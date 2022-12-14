@@ -1,5 +1,6 @@
 package com.bernardo.api.entities;
 
+import com.bernardo.api.entities.enums.OrderStatus;
 import jakarta.persistence.*;
 
 import java.time.Instant;
@@ -14,6 +15,8 @@ public class Order {
     private Integer id;
     private Instant moment;
 
+    private Integer orderStatus;
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User client;
@@ -22,10 +25,11 @@ public class Order {
 
     }
 
-    public Order(Integer id, Instant moment, User client) {
+    public Order(Integer id, Instant moment, OrderStatus orderStatus, User client) {
         this.id = id;
         this.moment = moment;
         this.client = client;
+        setOrderStatus(orderStatus);
     }
 
     public Integer getId() {
@@ -52,6 +56,15 @@ public class Order {
         this.client = client;
     }
 
+    public OrderStatus getOrderStatus(){
+        return OrderStatus.valueOf(orderStatus);
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus){
+        if(orderStatus != null){
+            this.orderStatus = orderStatus.getCode();
+        }
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
