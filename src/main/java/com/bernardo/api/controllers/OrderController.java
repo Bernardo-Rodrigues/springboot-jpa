@@ -1,9 +1,7 @@
 package com.bernardo.api.controllers;
 
 import com.bernardo.api.entities.Order;
-import com.bernardo.api.entities.User;
 import com.bernardo.api.services.OrderService;
-import com.bernardo.api.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

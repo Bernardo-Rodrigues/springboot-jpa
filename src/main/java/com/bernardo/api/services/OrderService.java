@@ -1,9 +1,7 @@
 package com.bernardo.api.services;
 
 import com.bernardo.api.entities.Order;
-import com.bernardo.api.entities.User;
 import com.bernardo.api.repositories.OrderRepository;
-import com.bernardo.api.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
