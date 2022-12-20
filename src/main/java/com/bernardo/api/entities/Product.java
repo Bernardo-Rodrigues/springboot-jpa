@@ -24,6 +24,9 @@ public class Product {
     )
     private Set<Category> categories = new HashSet<>();
 
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderItem> orders = new HashSet<>();
+
     public Product(){
 
     }
@@ -34,6 +37,14 @@ public class Product {
         this.description = description;
         this.price = price;
         this.imgUrl = imgUrl;
+    }
+
+    public Set<Order> getOrders(){
+        Set<Order> orders = new HashSet<>();
+        for(OrderItem orderItem: this.orders){
+            orders.add(orderItem.getOrder());
+        }
+        return orders;
     }
 
     public Integer getId() {
