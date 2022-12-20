@@ -1,6 +1,7 @@
 package com.bernardo.api.entities;
 
 import com.bernardo.api.entities.pk.OrderItemPk;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -10,13 +11,12 @@ import jakarta.persistence.Table;
 public class OrderItem {
 
     @EmbeddedId
-    private OrderItemPk id;
+    private OrderItemPk id = new OrderItemPk();
 
     private Integer quantity;
     private Double price;
 
     public OrderItem(){
-
     }
 
     public OrderItem(Order order, Product product, Integer quantity, Double price) {
@@ -26,6 +26,7 @@ public class OrderItem {
         this.price = price;
     }
 
+    @JsonIgnore
     public Order getOrder() {
         return id.getOrder();
     }
