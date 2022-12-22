@@ -20,4 +20,8 @@ public class UserService {
     public User findById(Integer id){
         return userRepository.findById(id).get();
     }
+
+    public User insert(User user){
+        return userRepository.save(user);
+    }
 }

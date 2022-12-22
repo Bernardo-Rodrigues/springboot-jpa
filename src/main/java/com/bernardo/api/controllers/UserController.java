@@ -5,7 +5,9 @@ import com.bernardo.api.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -19,6 +21,14 @@ public class UserController {
     public ResponseEntity<List<User>> findAll(){
         List<User> users = service.findAll();
         return ResponseEntity.ok().body(users);
+    }
+
+    @PostMapping
+    public ResponseEntity<User> insert(@RequestBody User user){
+        user = service.insert(user);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(user.getId()).toUri();
+        return ResponseEntity.created(uri).body(user);
     }
 
     @GetMapping(value = "/{id}")
